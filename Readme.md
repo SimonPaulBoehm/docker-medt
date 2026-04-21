@@ -1,5 +1,7 @@
 # Docker-Umgebung
 
+[![Download](https://img.shields.io/badge/Download-Zip%20Release-blue?style=for-the-badge&logo=github)](https://github.com/SimonPaulBoehm/docker-medt/releases/download/Zip-Release/docker-medt.zip)
+
 ## Inhaltsverzeichnis
 - [Voraussetzungen](#voraussetzungen)
 - [Installation von Docker auf Windows](#installation-von-docker-auf-windows)
