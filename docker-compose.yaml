@@ -1,0 +1,39 @@
+  services:
+    db:
+      container_name: mysqlMedt
+      image: ${DOCKER_REGISTRY_URL}mysql:${MYSQL_VERSION}
+      env_file: .env
+      ports:
+        - "3306:3306"
+      volumes:
+        - c:/temp/DB:/var/lib/mysql
+    phpmyadmin:
+      container_name: phpmyadminMedt
+      image: ${DOCKER_REGISTRY_URL}phpmyadmin:latest
+      restart: always
+      env_file: .env
+      environment:
+        PMA_HOST: db
+        PMA_PORT: 3306
+        PMA_USER: root
+        PMA_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      ports:
+        - "9998:80"
+      depends_on:
+        - db
+    php:
+      container_name: phpMedt
+      build:
+        context: .
+        args: 
+          DOCKER_REGISTRY_URL: ${DOCKER_REGISTRY_URL}
+      ports:
+        - "9999:80"
+      volumes:
+        - ./app/src:/var/www/html
+      env_file: .env
+      depends_on:
+        - db
+
+
+
